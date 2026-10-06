@@ -1,0 +1,15 @@
+[Unit]
+Description=DeltaFox Trading Dashboard FastAPI Backend
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/deltafox/backend
+Environment="PATH=/var/www/deltafox/backend/venv/bin"
+EnvironmentFile=/var/www/deltafox/backend/.env
+ExecStart=/var/www/deltafox/backend/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 4
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
